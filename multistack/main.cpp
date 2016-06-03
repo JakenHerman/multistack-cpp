@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <cstring>
 
 using namespace std;
 
@@ -36,31 +37,32 @@ int main(int argc, char* argv[]){
     cout << "Value of Lo? ";
     cin >> user_stack.lo; //value of lo is received from the user.
     
+    string user_operation = " ";
     string user_stack_selection;
     string user_information;
     cout << "Enter your operations. \n To insert, type i [stack-number] [information] \n To delete, type d [stack-number] [information] \n To quit, type q 0 0\n";
     
     do {
-        cin >> argv[0] >> user_stack_selection >> user_information;
-        if(!strncmp(argv[0], "i", 2)){
+        cin >> user_operation >> user_stack_selection >> user_information;
+        if(user_operation == "i"){
             cout << "You chose to insert \n";
             cout << "sec is " << user_stack_selection << "\n";
             cout << "thi is" << user_information << "\n";
             //do some insertion
         }
-        else if (!strncmp(argv[0], "d", 2)){
+        else if (user_operation == "d"){
             cout << "You chose to delete \n";
             //do some deletion
         }
         else {
-            if (!strncmp(argv[0], "q", 2)){
+            if (user_operation == "q"){
                 cout << "Aborting program. Goodbye \n";
             }
             else {
                 cout << "Error: invalid operation error. Try again, friend. \n";
             }
         }
-    } while (strncmp(argv[0], "q", 2));
+    } while (user_operation != "q");
     
     return 0;
 }
